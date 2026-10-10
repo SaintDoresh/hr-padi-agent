@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Tokens: a soft off-white page, roomy white panels, hairlines instead of
+ * shadows, and one red accent. Swap --accent-hue to re-hue everything.
+ */
+:root {
+  --accent-hue: 354;
+
+  --surface: 0 14% 97%;
+  --surface-raised: 0 0% 100%;
+  --surface-sunken: 0 12% 95%;
+  --border: 0 10% 89%;
+
+  --ink: 350 18% 12%;
+  --ink-muted: 350 6% 45%;
+  --ink-faint: 350 5% 62%;
+
+  --accent: var(--accent-hue) 74% 47%;
+  --accent-ink: 0 0% 100%;
+  --accent-soft: var(--accent-hue) 80% 96%;
+  --accent-line: var(--accent-hue) 60% 78%;
+
+  --warn: 32 92% 45%;
+  --warn-ink: 32 70% 22%;
+  --warn-soft: 32 92% 95%;
+
+  --good: 152 60% 34%;
+  --good-soft: 152 50% 94%;
+
+  --scrim: 350 18% 12%;
+  --shadow: 350 18% 12%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: hsl(var(--surface));
+  color: hsl(var(--ink));
+  -webkit-font-smoothing: antialiased;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.page-title {
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.stat-figure {
+  font-size: clamp(1.625rem, 1.4rem + 0.8vw, 2rem);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+@layer base {
+  *:focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 2px;
+  }
+}
+
+@keyframes shimmer {
+  from { background-position: -400px 0; }
+  to { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, hsl(var(--surface-sunken)) 0%, hsl(var(--border)) 50%, hsl(var(--surface-sunken)) 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
